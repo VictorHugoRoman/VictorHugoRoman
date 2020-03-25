@@ -1,5 +1,5 @@
-# VictorHugoRoman
-Problemas de aceleración de hardware, Emulador Android Visual Studio
+# AcelerarRendimiento Xamarin ADV
+Problemas de aceleración de hardware, Emulador Xamarin Android Device Manager
 En este tutorial se asume que tenemos configurado el emulador de android pero la aceleracion de hardware no handa bien,
 La configuracion se hicieron en la siguiente maquina:
 
