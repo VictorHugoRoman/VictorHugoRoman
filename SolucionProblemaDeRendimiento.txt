@@ -1,4 +1,4 @@
-**Problemas de rendimiento, en visual studio Android Device Manager**
+**Problemas de rendimiento Xamarin ADV, en visual studio 2017 community Android Device Manager**
 
 -Los problemas de rendimiento se suelen producir por uno de los problemas siguientes:
   El emulador se ejecuta sin aceleración de hardware.
