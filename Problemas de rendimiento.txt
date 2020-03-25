@@ -1,0 +1,70 @@
+**Problemas de rendimiento, en visual studio Android Device Manager**
+
+-Los problemas de rendimiento se suelen producir por uno de los problemas siguientes:
+  El emulador se ejecuta sin aceleración de hardware.
+  El dispositivo virtual que se ejecuta en el emulador no usa una imagen del sistema basado en x86.
+
+-La aceleración de hardware no está habilitada:
+  El inicio de un dispositivo virtual desde Device Manager generará un cuadro de diálogo con un mensaje de error en el que se indica 
+  que Windows Hypervisor Platform (WHPX) no está correctamente configurado, produce el siguiente mensaje:
+       
+    "Windows Hypervisor Platform error
+    We've encountered an error with your Windows
+    Hypervisor Platform (WHPX) configuration that is
+    preventing us from running your emulator
+    accelerated.
+    Please ensure WHPX is properly installed, then
+    perform a factory reset on the emulator and try
+    again."
+
+-comprobar que la aceleración de hardware esté habilitada:
+ ejecute el comando en cmd > "C:\Program Files (x86)\Android\android-sdk\emulator\emulator-check.exe" accel 
+ esa es mi ruta para Android SDK, devolvera alguno de los siguientes mensajes:
+  -Si Hyper-V está disponible:
+   "HAXM is not installed, but Windows Hypervisor Platform is available."
+  -Si HAXM está disponible:
+    "HAXM version 6.2.1 (4) is installed and usable."
+  -Si la aceleración de hardware no está disponible:
+    "HAXM is not installed on this machine."
+  -Configuración del BIOS incorrecta:
+    Si el BIOS no se ha configurado correctamente para admitir la aceleración de hardware, se mostrará un mensaje similar:
+    "VT feature disabled in BIOS/UEFI"
+-Problemas de Hyper-V:
+En algunos casos, habilitar tanto Hyper-V como Windows Hypervisor Platform(WHPX) en el cuadro de diálogo Activar o desactivar
+las características de Windows puede que no se habilite Hyper-V correctamente. Para comprobar que Hyper-V está habilitado, 
+siga estos pasos:
+   1. En el cuadro de búsqueda de Windows, escriba powershell.
+   2. Haga clic con el botón derecho en Windows PowerShell en los resultados de la búsqueda y seleccione Ejecutar como administrador.
+   3. En la consola de PowerShell, escriba el comando siguiente:
+        "Get-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V-All -Online"
+      - Si Hyper-V no está habilitado, se mostrará un mensaje similar al ejemplo siguiente para indicar 
+        que el estado de Hyper-V es Deshabilitado:
+          "   FeatureName      : Microsoft-Hyper-V-All
+              DisplayName      : Hyper-V
+              Description      : Provides services and management tools for creating and running virtual machines and their resources.
+              RestartRequired  : Possible
+              State            : Disabled
+              CustomProperties :         
+          "
+     4. Para ver si el Hypervisor o Windows Hypervisor Platform (WHPX) en PowerShell está habilitado, escriba el comando siguiente:
+        "Get-WindowsOptionalFeature -FeatureName HypervisorPlatform -Online"
+        - Si Hypervisor (WHPX) no está habilitado, se mostrará un mensaje similar al ejemplo siguiente para indicar que el estado
+          de HypervisorPlatform (WHPX) es Deshabilitado:
+            "FeatureName      : HypervisorPlatform
+             DisplayName      : Windows Hypervisor Platform
+             Description      : Enables virtualization software to run on the Windows hypervisor
+             RestartRequired  : Possible
+             State            : Disabled
+             CustomProperties : 
+            "
+     5. Si Hyper-V o HypervisorPlatform no están habilitados, use los comandos de PowerShell siguientes para habilitarlos:
+        Habilitar Hyper-V: Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+        Habilitar HypervisorPlatform: Enable-WindowsOptionalFeature -Online -FeatureName HypervisorPlatform -All
+    
+     6. Cuando se completen estos comandos, reinicie, aunque en algunas ocasiones no es necesario.
+        
+       
+        
+    
+ 
+  
