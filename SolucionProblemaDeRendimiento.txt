@@ -1,5 +1,8 @@
 **Problemas de rendimiento Xamarin ADV, en visual studio 2017 community Android Device Manager**
 
+-Primeramente verificar en "caracteristicas de windows" si tenemos configurada la tecnologia "Hyper-V",
+  debemos tener instalado todos sus servicios.
+
 -Los problemas de rendimiento se suelen producir por uno de los problemas siguientes:
   El emulador se ejecuta sin aceleración de hardware.
   El dispositivo virtual que se ejecuta en el emulador no usa una imagen del sistema basado en x86.
