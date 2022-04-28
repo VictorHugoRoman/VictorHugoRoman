@@ -64,8 +64,11 @@ siga estos pasos:
         Habilitar Hyper-V: Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
         Habilitar HypervisorPlatform: Enable-WindowsOptionalFeature -Online -FeatureName HypervisorPlatform -All
     
-     6. Una vez completado todos los pasos anteriores procedemos a instalar la tecnologia Intel Hardware Accelerated                Execution Manager (Intel HAXM), es un motor de virtualización asistido por hardware (hipervisor) que utiliza la            tecnología de virtualización Intel (Intel VT) para acelerar el desarrollo de Android. solo funciona con                    procesadores intel. https://github.com/intel/haxm/wiki/Installation-Instructions-on-Windows#Introduction.
-         descargas https://github.com/intel/haxm/releases.
+     6. Una vez completado todos los pasos anteriores procedemos a instalar la tecnologia Intel Hardware Accelerated
+        Execution Manager (Intel HAXM), es un motor de virtualización asistido por hardware (hipervisor) que utiliza la 
+        tecnología de virtualización Intel (Intel VT) para acelerar el desarrollo de Android. solo funciona con
+        procesadores intel. https://github.com/intel/haxm/wiki/Installation-Instructions-on-Windows#Introduction.
+        descargas https://github.com/intel/haxm/releases.
      
      7. Cuando se completen estos comandos, reinicie, aunque en algunas ocasiones no es necesario.
         
